@@ -1,0 +1,65 @@
+set -o vi
+alias ll="ls -la"
+alias vim="nvim"
+alias rebuild="~/nixos/rebuild.sh"
+
+# direnv: auto-load per-project devshells (.envrc containing `use flake`).
+# .bashrc is a static (home-manager-linked) file, so we add the hook here.
+if command -v direnv >/dev/null; then
+  eval "$(direnv hook bash)"
+fi
+
+# Quickly scaffold a Rust dev environment.
+#   rust-init           # in the current folder
+#   rust-init myproj    # create ./myproj and init there
+# Drops a fenix devshell (flake.nix) + .cargo/config.toml + .envrc, creates the
+# crate with the project's own toolchain, and enables direnv.
+rust-init() {
+  local name="${1:-}"
+  if [ -n "$name" ]; then
+    mkdir -p "$name" && cd "$name" || return 1
+  fi
+
+  if [ -e flake.nix ]; then
+    echo "flake.nix already exists here — skipping template init."
+  else
+    nix flake init -t "$HOME/nixos#rust" || return 1
+  fi
+
+  if [ ! -f Cargo.toml ]; then
+    nix develop --command cargo init . || return 1
+  fi
+
+  direnv allow 2>/dev/null || true
+  echo
+  echo "Rust env ready in $(pwd)."
+  echo "  channel / targets -> flake.nix (EDIT PER PROJECT block)"
+  echo "  build target      -> .cargo/config.toml"
+}
+
+# Generic (non-Rust) nix devshell scaffold.
+nix-shell-generate() {
+  if [ ! -f shell.nix ]; then
+    cat >shell.nix <<'EOF'
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  name = "dev-shell";
+
+  buildInputs = with pkgs; [
+  ];
+}
+EOF
+    echo "Created shell.nix in $(pwd)/shell.nix"
+    echo "Use the \`--pure\` option to only have the defined packages available"
+  fi
+
+}
+
+x() {
+  tmux new-session \; \
+    split-window -h -p 30 \; \
+    select-pane -t 0
+}
+
+export PS1="\W> "
