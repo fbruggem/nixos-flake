@@ -20,8 +20,8 @@
 local function load_project_ra_settings(project_root, default_settings)
   local settings = default_settings or {}
   project_root = project_root
-    or (vim.fs.root and vim.fs.root(0, { "rust-analyzer.json", "Cargo.toml", ".git" }))
-    or vim.fn.getcwd()
+      or (vim.fs.root and vim.fs.root(0, { "rust-analyzer.json", "Cargo.toml", ".git" }))
+      or vim.fn.getcwd()
 
   local path = project_root .. "/rust-analyzer.json"
   local fd = io.open(path, "r")
@@ -41,12 +41,6 @@ local function load_project_ra_settings(project_root, default_settings)
 end
 
 return {
-  -- C / C++ (clangd). Mason's clangd runs thanks to nix-ld; clang-tools is
-  -- also on PATH from Nix as a fallback.
-  { import = "lazyvim.plugins.extras.lang.clangd" },
-
-  -- Rust: pulls in rustaceanvim + treesitter (rust, toml) + crates.nvim.
-  { import = "lazyvim.plugins.extras.lang.rust" },
 
   -- Hook our per-project settings loader into rustaceanvim. rustaceanvim
   -- calls `settings(project_root, default_settings)` when starting the LSP.
