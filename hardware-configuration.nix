@@ -18,21 +18,17 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/mapper/luks-b9853b29-34cd-4b17-8482-9d74e95d66fe";
+    device = "/dev/disk/by-uuid/165705f3-3fa2-4b7b-a23c-9eca7e172eaa";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-b9853b29-34cd-4b17-8482-9d74e95d66fe".device = "/dev/disk/by-uuid/b9853b29-34cd-4b17-8482-9d74e95d66fe";
-
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/746A-0C4E";
+    device = "/dev/disk/by-uuid/0843-5D8F";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
   };
 
-  swapDevices = [
-    {device = "/dev/mapper/luks-b02eb1dd-3283-4e78-aec9-7f82948c551c";}
-  ];
+  swapDevices = [];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
