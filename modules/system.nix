@@ -67,7 +67,7 @@
     enable = true;
     config = {
       user.name = "fbruggem";
-      user.email = "fbruggem@proton.me";
+      user.email = "git@fbruggem.eu";
       pull.rebase = false;
     };
   };
