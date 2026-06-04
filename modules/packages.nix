@@ -53,7 +53,6 @@
       rust-analyzer
 
       # Nix tooling
-      alejandra # formatter (`nix fmt`)
       nil # nix language server
     ])
     ++ [
