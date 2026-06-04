@@ -30,7 +30,7 @@
   in {
     # Build/switch with:  sudo nixos-rebuild switch --flake ~/nixos#nixos
     # (the host attr name "nixos" matches networking.hostName)
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.thinkpad-t480s = nixpkgs.lib.nixosSystem {
       inherit system;
       # specialArgs makes `inputs` and `username` available to every module.
       specialArgs = {inherit inputs username;};
