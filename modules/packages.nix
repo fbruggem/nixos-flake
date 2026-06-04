@@ -25,14 +25,6 @@
       tmux
       discord
       spotify
-      (symlinkJoin {
-        name = "anki";
-        paths = [anki];
-        buildInputs = [makeWrapper];
-        postBuild = ''
-          wrapProgram $out/bin/anki --set QT_QPA_PLATFORM xcb
-        '';
-      })
 
       # Editor + CLI
       neovim
@@ -41,19 +33,13 @@
       xclip
       tree-sitter
       nodejs
+      nil # nix language server
 
       # C / systems programming
       man-pages
       clang
       clang-tools # clangd
       gdb
-
-      # Rust: per-project devshells provide a matched rust-analyzer; this is a
-      # global fallback for editing Rust files outside a devshell.
-      rust-analyzer
-
-      # Nix tooling
-      nil # nix language server
     ])
     ++ [
       # Zen browser comes from its flake input, pinned via flake.lock.
