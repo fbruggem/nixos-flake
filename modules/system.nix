@@ -4,8 +4,6 @@
   username,
   ...
 }: {
-  system.stateVersion = "26.05";
-  networking.hostName = "nixos";
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
