@@ -8,6 +8,7 @@
     # `follows` keeps home-manager on the SAME nixpkgs as the system,
     # so there's no version skew between the two.
     home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
