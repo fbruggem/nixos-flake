@@ -2,6 +2,7 @@
 {...}: {
   imports = [
     ./system.nix
+    ./gaming.nix
     ./desktop.nix
     ./packages.nix
     ./home.nix
