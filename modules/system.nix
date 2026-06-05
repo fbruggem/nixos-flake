@@ -4,12 +4,13 @@
   username,
   ...
 }: {
-  system.stateVersion = "26.05"; # don't change
+  system.stateVersion = "26.05";
   networking.hostName = "thinkpad-t480s";
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Networking
   networking.networkmanager.enable = true;
