@@ -33,6 +33,14 @@
     profiles.user.databases = [
       {
         settings = {
+"org/gnome/desktop/background" = {
+  "picture-uri" = "file://${../dotfiles/wallpaper.jpg}";
+  "picture-uri-dark" = "file://${../dotfiles/wallpaper.jpg}";
+  "picture-options" = "zoom";
+};
+"org/gnome/desktop/screensaver" = {
+  "picture-uri" = "file://${../dotfiles/wallpaper.jpg}";
+};
           "org/gnome/desktop/wm/keybindings" = {
             "switch-to-workspace-1" = ["<Alt>1"];
             "switch-to-workspace-2" = ["<Alt>2"];
