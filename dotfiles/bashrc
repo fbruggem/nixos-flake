@@ -56,6 +56,31 @@ EOF
 
 }
 
+cpp98-init() {
+  local name="${1:-}"
+  if [ -n "$name" ]; then
+    mkdir -p "$name" && cd "$name" || return 1
+  fi
+
+  if [ -e flake.nix ]; then
+    echo "flake.nix already exists here — skipping template init."
+  else
+    nix flake init -t "$HOME/nixos#cpp98" || return 1
+  fi
+
+  _flake_track
+
+  # Generate flake.lock once so the env is fully pinned, then track it.
+  nix develop --command true || return 1
+  _flake_track
+
+  direnv allow 2>/dev/null || true
+  echo
+  echo "C++98 env ready in $(pwd)."
+  echo "  build:  make        run:  ./main"
+  echo "  flags   -> Makefile (and compile_flags.txt for clangd)"
+}
+
 x() {
   tmux new-session \; \
     split-window -h -p 30 \; \
