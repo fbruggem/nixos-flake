@@ -40,6 +40,7 @@
       clang
       clang-tools # clangd
       gdb
+      claude-code
     ])
     ++ [
       # Zen browser comes from its flake input, pinned via flake.lock.
