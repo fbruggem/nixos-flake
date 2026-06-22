@@ -28,8 +28,21 @@
     system = "x86_64-linux";
     username = "fbruggem";
   in {
-    # Build/switch with:  sudo nixos-rebuild switch --flake ~/nixos#nixos
-    # (the host attr name "nixos" matches networking.hostName)
+    # Default setup for thinkpad-t480s
+    nixosConfigurations.new = nixpkgs.lib.nixosSystem {
+      inherit system;
+      # specialArgs makes `inputs` and `username` available to every module.
+      specialArgs = {inherit inputs username;};
+      modules = [
+        ./hardware-configuration.nix
+        ./modules/system.nix
+        ./modules/home.nix
+        ./modules/packages.nix
+        ./modules/hyprland.nix
+        home-manager.nixosModules.home-manager
+      ];
+    };
+
     nixosConfigurations.thinkpad-t480s = nixpkgs.lib.nixosSystem {
       inherit system;
       # specialArgs makes `inputs` and `username` available to every module.
@@ -40,15 +53,6 @@
         home-manager.nixosModules.home-manager
       ];
     };
-
-    # Per-project Rust dev environment. In any project folder:
-    #   nix flake init -t ~/nixos#rust     (or use the `rust-init` shell helper)
-    templates.rust = {
-      path = ./templates/rust;
-      description = "Rust devshell (fenix) with a per-project toolchain + target";
-    };
-    
-    templates.default = self.templates.rust;
 
     # `nix fmt` formats the whole repo.
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
