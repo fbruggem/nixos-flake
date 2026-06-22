@@ -4,11 +4,3 @@ keybind = ctrl+,=unbind
 keybind = ctrl+shift+.=unbind
 keybind = ctrl+shift+,=unbind
 command =   tmux new-session \; split-window -h -p 20 \; select-pane -t 0
-
-
-
-#keybind = ctrl+,=goto_split:next
-#keybind = super+,=new_split:right
-#keybind = super+shift+,=new_split:down
-#keybind = super+ctrl+shift+left=resize_split:left,25
-# keybind = super+ctrl+shift+right=resize_split:right,25
