@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 # Rebuild NixOS from this flake, then commit + push on success.
+#
+# Host attribute defaults to this machine's hostname; pass one to override:
+#   ./rebuild.sh                 # builds nixosConfigurations.$HOSTNAME
+#   ./rebuild.sh other-host      # builds nixosConfigurations.other-host
 set -euo pipefail
 
 cd "$HOME/nixos"
+
+# Flake host: first arg if given, otherwise this machine's hostname.
+host="${1:-$HOSTNAME}"
 
 # Pull latest without clobbering local edits.
 git pull --ff-only || true
@@ -15,8 +22,8 @@ fi
 # Show what changed.
 git --no-pager diff -U0 || true
 
-echo "Rebuilding (flake)…"
-if ! sudo nixos-rebuild switch --flake "$HOME/nixos#$HOSTNAME"; then
+echo "Rebuilding (flake) → ${host}…"
+if ! sudo nixos-rebuild switch --flake "$HOME/nixos#$host"; then
   echo "Rebuild failed." >&2
   exit 1
 fi

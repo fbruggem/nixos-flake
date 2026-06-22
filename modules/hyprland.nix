@@ -8,5 +8,6 @@
     wofi
     nitch
     nemo
+    hyprlauncher
   ];
 }
