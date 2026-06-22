@@ -48,10 +48,6 @@
       description = "Rust devshell (fenix) with a per-project toolchain + target";
     };
     
-    templates.cpp98 = {
-      path = ./templates/cpp98;
-      description = "Cpp devshell";
-    };
     templates.default = self.templates.rust;
 
     # `nix fmt` formats the whole repo.
