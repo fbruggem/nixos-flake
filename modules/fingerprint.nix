@@ -13,6 +13,8 @@
     inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
   ];
 
+  security.pam.services.sudo.fprintAuth = true;
+
   services."06cb-009a-fingerprint-sensor" = {
     enable = true;
     # "python-validity": enroll + verify directly (what you want here).
