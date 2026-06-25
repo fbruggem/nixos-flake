@@ -6,5 +6,6 @@
     ./desktop.nix
     ./packages.nix
     ./home.nix
+    ./fingerprint.nix
   ];
 }
