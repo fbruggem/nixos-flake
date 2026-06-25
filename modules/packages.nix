@@ -35,6 +35,7 @@
       tree-sitter
       nodejs
       nil # nix language server
+      busybox
 
       # C / systems programming
       man-pages
