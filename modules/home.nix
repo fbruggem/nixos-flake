@@ -21,6 +21,7 @@
         };
       };
 
+      services.easyeffects.enable = true;
       # direnv + nix-direnv: entering a project folder with an .envrc
       # (`use flake`) auto-loads its devshell. The shell hook itself is added
       # in dotfiles/bashrc (since .bashrc is a managed static file).

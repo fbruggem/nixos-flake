@@ -25,6 +25,7 @@
       tmux
       discord
       spotify
+      planify
 
       # Editor + CLI
       neovim
