@@ -60,7 +60,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = username;
-    extraGroups = ["input" "uinput" "networkmanager" "wheel" "docker"];
+    extraGroups = ["input" "uinput" "networkmanager" "wheel" "docker" "i2c"];
   };
 
   # System-wide git
