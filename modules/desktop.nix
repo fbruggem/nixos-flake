@@ -11,14 +11,19 @@
     variant = "";
   };
 
+  # Printing
+  services.printing.enable = true;
+
+  # External-monitor brightness over DDC/CI.
+  # hardware.i2c.enable loads the i2c-dev module, installs udev rules, and
+  # creates the `i2c` group (fbruggem is added to it in system.nix). ddcutil
+  # is the backend; the GNOME extension adds a brightness slider per external
+  # monitor in the quick-settings panel (the internal panel keeps its own).
   hardware.i2c.enable = true;
   environment.systemPackages = with pkgs; [
     ddcutil
     gnomeExtensions.brightness-control-using-ddcutil
   ];
-
-  # Printing
-  services.printing.enable = true;
 
   # Audio via PipeWire
   services.pulseaudio.enable = false;
@@ -39,7 +44,10 @@
     profiles.user.databases = [
       {
         settings = {
-"org/gnome/shell" = {
+          # Enabled GNOME extensions. NOTE: this database has lockAll = true,
+          # so this key is locked — any extension you want on must be listed
+          # here (you won't be able to toggle extensions from the UI).
+          "org/gnome/shell" = {
             enabled-extensions = [
               pkgs.gnomeExtensions.brightness-control-using-ddcutil.extensionUuid
             ];
