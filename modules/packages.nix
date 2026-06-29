@@ -26,6 +26,7 @@
       discord
       spotify
       planify
+      telegram-desktop
 
       # Editor + CLI
       neovim
