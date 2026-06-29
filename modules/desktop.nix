@@ -39,6 +39,11 @@
     profiles.user.databases = [
       {
         settings = {
+"org/gnome/shell" = {
+            enabled-extensions = [
+              pkgs.gnomeExtensions.brightness-control-using-ddcutil.extensionUuid
+            ];
+          };
           "org/gnome/desktop/background" = {
             "picture-uri" = "file://${../dotfiles/wallpaper.jpg}";
             "picture-uri-dark" = "file://${../dotfiles/wallpaper.jpg}";

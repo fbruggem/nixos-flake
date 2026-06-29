@@ -26,6 +26,7 @@
       discord
       spotify
       planify
+      obsidian
       telegram-desktop
 
       # Editor + CLI
