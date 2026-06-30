@@ -2,8 +2,6 @@
 {pkgs, ...}: {
   # X / GNOME
   services.xserver.enable = true;
-  services.desktopManager.gnome.enable = true;
-  services.displayManager.gdm.enable = true;
 
   # Keyboard layout (X11)
   services.xserver.xkb = {
