@@ -28,6 +28,7 @@
       planify
       obsidian
       telegram-desktop
+      anki
 
       # Editor + CLI
       neovim
